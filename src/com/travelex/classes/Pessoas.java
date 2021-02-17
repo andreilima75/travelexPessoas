@@ -41,18 +41,18 @@ public class Pessoas {
 
     public String getAbreviadoNome() throws Exception {
         this.verificarNome(nome);
-        String nomeAbreviado = "";
+        StringBuilder nomeAbreviado = new StringBuilder();
         if (nomeSeparado.length > 0) {
-            nomeAbreviado = nomeSeparado[0];
+            nomeAbreviado = new StringBuilder(nomeSeparado[0]);
             for (int i = 1; i < nomeSeparado.length - 1; i++) {
-                nomeAbreviado = nomeAbreviado + " " + nomeSeparado[i].substring(0, 1).toUpperCase(Locale.ROOT) + ".";
+                nomeAbreviado.append(" ").append(nomeSeparado[i].substring(0, 1).toUpperCase(Locale.ROOT)).append(".");
             }
-            if (nomeSeparado.length -1 > 0)
-                nomeAbreviado = nomeAbreviado + " " + nomeSeparado[nomeSeparado.length - 1];
+            if (nomeSeparado.length - 1 > 0)
+                nomeAbreviado.append(" ").append(nomeSeparado[nomeSeparado.length - 1]);
         } else
             throw new Exception("Nome não processado");
 
-        return nomeAbreviado;
+        return nomeAbreviado.toString();
     }
 
     private void splitNome(String nome) {
